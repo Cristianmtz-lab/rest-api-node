@@ -25,10 +25,14 @@ Content-Type: application/json
   "genre": ["Crime", "Drama"]
 }
 
+### Delete movie 
+
+DELETE http://localhost:3000/movies/39ce6dec-57d1-4be0-aa56-91de5a218fad
+
 
 ### Actualizar una movie
 
-PATCH http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+PATCH http://localhost:3000/movies/6a53a181-aae7-422b-9641-1b1d1e62b52a
 Content-Type: application/json
 
 {
