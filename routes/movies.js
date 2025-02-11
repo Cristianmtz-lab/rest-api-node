@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { MovieController } from '../controllers/movies.js'
 
 // como leer un json en ESmodules
 // import fs from 'node:fs'
@@ -9,13 +10,18 @@ import { Router } from 'express'
 // const require = createRequire(import.meta.url)
 // const movies = require('./movies.json')
 
-import { MovieController } from '../controllers/movies.js'
+export const createMovieRouter = ({ movieModel }) => {
+  const moviesRouter = Router()
 
-export const moviesRouter = Router()
+  const movieController = new MovieController({ movieModel })
 
-// todas los recursos que sean movies se identifica con /movies /
-moviesRouter.get('/', MovieController.getAll)
-moviesRouter.get('/:id', MovieController.getById)
-moviesRouter.post('/', MovieController.create)
-moviesRouter.delete('/:id', MovieController.delete)
-moviesRouter.patch('/:id', MovieController.upDate)
+  // todas los recursos que sean movies se identifica con /movies /
+  moviesRouter.get('/', movieController.getAll)
+  moviesRouter.post('/', movieController.create)
+
+  moviesRouter.get('/:id', movieController.getById)
+  moviesRouter.delete('/:id', movieController.delete)
+  moviesRouter.patch('/:id', movieController.upDate)
+
+  return moviesRouter
+}
